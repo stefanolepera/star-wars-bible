@@ -38,17 +38,17 @@ jobs:
 
     deploy:
         docker:
-              # specify the version you desire here
-              - image: circleci/node:8
+            # specify the version you desire here
+            - image: circleci/node:8
 
-              # Specify service dependencies here if necessary
-              # CircleCI maintains a library of pre-built images
-              # documented at https://circleci.com/docs/2.0/circleci-images/
-              # - image: circleci/mongo:3.4.4
+            # Specify service dependencies here if necessary
+            # CircleCI maintains a library of pre-built images
+            # documented at https://circleci.com/docs/2.0/circleci-images/
+            # - image: circleci/mongo:3.4.4
 
         working_directory: ~/repo
 
-         steps:
+        steps:
             - run:
                   name: 'Build Project'
                   command: 'yarn build'
@@ -63,8 +63,8 @@ workflows:
             - build:
 
             - deploy-prod:
-                requires: 
-                    - build
-                filters:
-                    branches:
-                      only: master
+                  requires:
+                      - build
+                  filters:
+                      branches:
+                          only: master
