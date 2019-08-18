@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../actions/fetchDataAction';
 import { Input } from './SearchBar.style';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
+    const disabled = useSelector(state => state.bootstrap.filmsDataError);
     const [character, setCharacter] = useState('');
 
     useEffect(() => {
         dispatch(fetchData(character));
-        console.log('character', character);
     }, [character, dispatch]);
 
     const onChange = e => {
@@ -23,6 +23,7 @@ const SearchBar = () => {
             placeholder="Search Character"
             onChange={onChange}
             value={character}
+            disabled={disabled}
             autoFocus
         />
     );
