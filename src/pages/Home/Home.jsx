@@ -1,11 +1,11 @@
 import React from 'react';
-import { Logo } from '../../components';
+import { Logo, SearchBar } from '../../components';
 
 const Home = () => {
     return (
         <>
             <Logo />
-            <p>{`check if new version ${Math.random()}`}</p>
+            <SearchBar />
         </>
     );
 };
