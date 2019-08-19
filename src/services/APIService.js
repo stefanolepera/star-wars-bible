@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-export const getData = async (query) => {
-    console.log('query', query);
-    const response = await axios.get(`https://swapi.co/api/people/?search=${query}`);
+export const getData = async (url, query = '') => {
+    const response = await axios.get(`${url}${query}`);
 
     return response;
 };
