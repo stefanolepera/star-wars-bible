@@ -1,11 +1,20 @@
-import React from 'react';
-import { Logo } from '../../components';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { bootstrapApplication } from '../../actions/bootstrapAction';
+import { Logo, SearchBar, Results } from '../../components';
 
 const Home = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(bootstrapApplication());
+    }, [dispatch]);
+
     return (
         <>
             <Logo />
-            <p>{`check if new version ${Math.random()}`}</p>
+            <SearchBar />
+            <Results />
         </>
     );
 };
