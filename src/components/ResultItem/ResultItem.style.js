@@ -29,5 +29,5 @@ export const DetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 0 20px;
+    margin: 0 auto;
 `;
