@@ -6,7 +6,7 @@ export const MainWrapper = styled.div`
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background: url(images/swb-bg.jpg) no-repeat center center fixed; 
-    background-size: cover;
+    background: url(images/swb-bg.jpg) repeat center center fixed; 
+    background-size: contain;
   }
 `
