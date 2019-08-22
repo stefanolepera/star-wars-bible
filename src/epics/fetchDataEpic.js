@@ -1,19 +1,18 @@
-import { of, from, concat } from 'rxjs';
+import { of, concat } from 'rxjs';
 import { ofType } from 'redux-observable';
 import { switchMap, map, catchError, debounceTime } from 'rxjs/operators';
 import { FETCH_DATA } from '../actions/types';
 import { fetchDataInProgress, fetchDataCompleted, fetchDataError } from '../actions/fetchDataAction';
-import { getData } from '../services/APIService';
 import { API_END_POINTS } from '../utils/APIEndPoints';
 
-export const fetchDataEpic = (action$) => action$.pipe(
+export const fetchDataEpic = (action$, state$, { getData }) => action$.pipe(
     ofType(FETCH_DATA),
-    debounceTime(250),
+    debounceTime(350),
     switchMap(action =>
         concat(
             of(fetchDataInProgress(true)),
-            from(getData(API_END_POINTS.characters, action.payload)).pipe(
-                map(response => fetchDataCompleted(response.data)),
+            getData(API_END_POINTS.characters, action.payload).pipe(
+                map(response => fetchDataCompleted(response.response)),
                 catchError(error => of(fetchDataError(error.response.details)))
             )
         )

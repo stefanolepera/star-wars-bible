@@ -9,9 +9,10 @@ import {
 import { Messages } from '../../utils/Locale';
 
 const Results = () => {
-    const [results, isLoading, isError, films, filmsError] = useSelector(
+    const [results, count, isLoading, isError, films, filmsError] = useSelector(
         state => [
             state.data.queryData,
+            state.data.count,
             state.data.isFetchingInProgress,
             state.data.isFetchingError,
             state.bootstrap.filmsData,
@@ -27,7 +28,7 @@ const Results = () => {
         return <Message text={Messages.fetchError} />;
     }
 
-    if (results.length === 0) {
+    if (count === 0) {
         return <Message text={Messages.notFound} />;
     }
 
