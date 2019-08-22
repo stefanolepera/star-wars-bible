@@ -1,7 +1,3 @@
-import axios from 'axios';
+import { ajax } from 'rxjs/ajax';
 
-export const getData = async (url, query = '') => {
-    const response = await axios.get(`${url}${query}`);
-
-    return response;
-};
+export const getData = (url, query = '') => ajax.get(`${url}${query}`)
