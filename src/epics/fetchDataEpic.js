@@ -12,7 +12,7 @@ export const fetchDataEpic = (action$, state$, { getData }) => action$.pipe(
         concat(
             of(fetchDataInProgress(true)),
             getData(API_END_POINTS.characters, action.payload).pipe(
-                map(response => fetchDataCompleted(response.response)),
+                map(search => fetchDataCompleted(search.response)),
                 catchError(error => of(fetchDataError(error.response.details)))
             )
         )
