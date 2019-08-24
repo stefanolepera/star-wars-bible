@@ -2,7 +2,7 @@ import {
 	FETCH_DATA,
 	FETCH_DATA_IN_PROGRESS,
 	FETCH_DATA_COMPLETED,
-	FETCH_DATA_ERROR,
+    FETCH_DATA_ERROR
 } from './types';
 
 export const fetchData = payload => ({
