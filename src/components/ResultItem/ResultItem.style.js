@@ -7,11 +7,15 @@ export const MainWrapper = styled.div`
     border-radius: 4px;
 
     @media ${device.mobileS} {
-        max-width: 360px;
+        max-width: 310px;
+    }
+
+    @media ${device.mobileM} {
+        max-width: 365px;
     }
 
     @media ${device.mobileL} {
-        max-width: 425px;
+        max-width: 420px;
     }
 
     @media ${device.tablet} {

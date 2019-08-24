@@ -1,10 +1,10 @@
 import React from 'react';
-import { Wrapper } from './Logo.style';
+import { Wrapper, Icon } from './Logo.style';
 
 const Logo = () => (
     <Wrapper>
-        <img src="images/star.svg" alt="Star" />
-        <img src="images/wars.svg" alt="Wars" />
+        <Icon src="images/star.svg" alt="Star" />
+        <Icon src="images/wars.svg" alt="Wars" />
     </Wrapper>
 );
 
