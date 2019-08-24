@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
 import { toArray } from 'rxjs/operators';
-import { bootstrapEpic } from '../bootstrapEpic';
+import bootstrapEpic from '../bootstrapEpic';
 import { BOOTSTRAP_APPLICATION, BOOTSTRAP_DATA_COMPLETED } from '../../actions/types';
 
 describe('bootstrapEpic test', () => {

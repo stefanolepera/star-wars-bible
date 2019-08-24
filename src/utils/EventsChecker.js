@@ -1,8 +1,9 @@
 import { SCROLL_TRIGGER_PERC } from '../constants/Settings';
 
-export const hasReachThreshold = (doc, hasNext, isLoading) =>
-    (window.innerHeight + doc.target.documentElement.scrollTop)
-        / doc.target.documentElement.offsetHeight
-        > (SCROLL_TRIGGER_PERC / 100)
-        && hasNext 
-        && !isLoading;
+export const shouldLoadMore = (scrollElement, hasNext, isLoading) =>
+    hasReachThreshold(scrollElement) && hasNext && !isLoading;
+
+export const hasReachThreshold = scrollElement =>
+    (window.innerHeight + scrollElement.target.documentElement.scrollTop)
+        / scrollElement.target.documentElement.offsetHeight
+        > (SCROLL_TRIGGER_PERC / 100);

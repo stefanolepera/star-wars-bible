@@ -16,7 +16,7 @@ const initialState = {
     isFetchingError: ''
 };
 
-export const fetchDataReducer = (state = initialState, action) => {
+const fetchDataReducer = (state = initialState, action) => {
     switch(action.type) {
         case FETCH_DATA:
             return {
@@ -49,3 +49,5 @@ export const fetchDataReducer = (state = initialState, action) => {
             };  
     }
 };
+
+export default fetchDataReducer;
