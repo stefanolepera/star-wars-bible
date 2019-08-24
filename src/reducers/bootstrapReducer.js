@@ -5,7 +5,7 @@ const initialState = {
     filmsDataError: false
 };
 
-export const bootstrapReducer = (state = initialState, action) => {
+const bootstrapReducer = (state = initialState, action) => {
     switch(action.type) {
         case BOOTSTRAP_DATA_COMPLETED:
             return {
@@ -23,3 +23,5 @@ export const bootstrapReducer = (state = initialState, action) => {
             };  
     }
 };
+
+export default bootstrapReducer;

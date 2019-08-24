@@ -10,20 +10,21 @@ import {
 import { sortedFilms } from '../utils/FilterData';
 import { API_END_POINTS } from '../constants/APIEndPoints';
 
-export const bootstrapEpic = (action$, state$, { getData }) =>
-    action$.pipe(
-        ofType(BOOTSTRAP_APPLICATION),
-        switchMap(() =>
-            concat(
-                of(scrollEventListener()),
-                getData(API_END_POINTS.films).pipe(
-                    map(films =>
-                        bootstrapDataCompleted(
-                            sortedFilms(films.response.results)
-                        )
-                    ),
-                    catchError(() => of(bootstrapDataError(true)))
-                )
+const bootstrapEpic = (action$, state$, { getData }) => action$.pipe(
+    ofType(BOOTSTRAP_APPLICATION),
+    switchMap(() =>
+        concat(
+            of(scrollEventListener()),
+            getData(API_END_POINTS.films).pipe(
+                map(films =>
+                    bootstrapDataCompleted(
+                        sortedFilms(films.response.results)
+                    )
+                ),
+                catchError(() => of(bootstrapDataError(true)))
             )
         )
-    );
+    )
+);
+
+export default bootstrapEpic;

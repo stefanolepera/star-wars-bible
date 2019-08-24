@@ -1,5 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
-import { fetchDataEpic } from '../fetchDataEpic';
+import fetchDataEpic from '../fetchDataEpic';
 import { FETCH_DATA, FETCH_DATA_IN_PROGRESS, FETCH_DATA_COMPLETED } from '../../actions/types';
 
 describe('fetchDataEpic test', () => {
