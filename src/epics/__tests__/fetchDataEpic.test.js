@@ -10,7 +10,12 @@ describe('fetchDataEpic test', () => {
           
         testScheduler.run(({ hot, cold, expectObservable }) => {
             const action$ = hot('-a', {
-                a: { type: FETCH_DATA }
+                a: { 
+                    type: FETCH_DATA,
+                    payload: {
+                        url: ''
+                    }
+                }
             });
             const state$ = null;
             const dependencies = {

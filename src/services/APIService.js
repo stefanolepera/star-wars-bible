@@ -1,3 +1,3 @@
 import { ajax } from 'rxjs/ajax';
 
-export const getData = (url, query = '') => ajax.get(`${url}${query}`)
+export const getData = (url) => ajax.get(`${url}`)

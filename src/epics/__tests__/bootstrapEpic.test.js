@@ -1,5 +1,4 @@
 import { of } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 import { toArray } from 'rxjs/operators';
 import { bootstrapEpic } from '../bootstrapEpic';
 import { BOOTSTRAP_APPLICATION, BOOTSTRAP_DATA_COMPLETED } from '../../actions/types';
