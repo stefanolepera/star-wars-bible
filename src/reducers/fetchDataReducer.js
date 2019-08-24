@@ -2,7 +2,7 @@ import {
     FETCH_DATA,
     FETCH_DATA_IN_PROGRESS,
     FETCH_DATA_ERROR,
-    FETCH_DATA_COMPLETED 
+    FETCH_DATA_COMPLETED
 } from '../actions/types';
 
 const initialState = {
@@ -34,7 +34,6 @@ export const fetchDataReducer = (state = initialState, action) => {
                 isFetchingError: action.payload
             };
         case FETCH_DATA_COMPLETED:
-            console.log('state.queryData', [...state.queryData, ...action.payload.results]);
             return {
                 ...state,
                 next: action.payload.next,
