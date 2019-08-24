@@ -2,16 +2,15 @@ import {
     FETCH_DATA,
     FETCH_DATA_IN_PROGRESS,
     FETCH_DATA_ERROR,
-    FETCH_DATA_COMPLETED,
-    CLEAR_RESULTS 
+    FETCH_DATA_COMPLETED 
 } from '../actions/types';
 
 const initialState = {
     queryValue: '',
     queryData: [],
-    next: false,
-    previous: false,
-    count: -1,
+    next: '',
+    hasPrevious: false,
+    isFromSearch: false,
     isFetchingInProgress: false,
     isFetchingError: ''
 };
@@ -21,7 +20,8 @@ export const fetchDataReducer = (state = initialState, action) => {
         case FETCH_DATA:
             return {
                 ...state,
-                queryValue: action.payload
+                queryValue: action.payload.url,
+                isFromSearch: action.payload.fromSearch
             };
         case FETCH_DATA_IN_PROGRESS:
             return {
@@ -34,19 +34,13 @@ export const fetchDataReducer = (state = initialState, action) => {
                 isFetchingError: action.payload
             };
         case FETCH_DATA_COMPLETED:
+            console.log('state.queryData', [...state.queryData, ...action.payload.results]);
             return {
                 ...state,
-                isFetchingInProgress: false,
-                count: action.payload.count,
                 next: action.payload.next,
-                previous: action.payload.previous,
-                queryData: state.previous ? [...state.queryData, ...action.payload.results] : action.payload.results
-            };
-        case CLEAR_RESULTS:
-            return {
-                ...state,
-                count: -1,
-                queryData: []
+                hasPrevious: action.payload.previous !== null,
+                isSinglePage: action.payload.next === null && action.payload.previous === null,
+                queryData: action.payload.previous ? [...state.queryData, ...action.payload.results] : action.payload.results
             };
         default:
             return {
