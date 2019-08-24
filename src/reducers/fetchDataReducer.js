@@ -9,6 +9,7 @@ const initialState = {
     queryValue: '',
     queryData: [],
     next: '',
+    count: -1,
     hasPrevious: false,
     isFromSearch: false,
     isFetchingInProgress: false,
@@ -36,6 +37,7 @@ export const fetchDataReducer = (state = initialState, action) => {
         case FETCH_DATA_COMPLETED:
             return {
                 ...state,
+                count: action.payload.count,
                 next: action.payload.next,
                 hasPrevious: action.payload.previous !== null,
                 isSinglePage: action.payload.next === null && action.payload.previous === null,

@@ -12,11 +12,15 @@ export const Input = styled.input`
     border-radius: 4px;
 
     @media ${device.mobileS} {
-        width: 340px;
+        width: 295px;
+    }
+
+    @media ${device.mobileM} {
+        width: 350px;
     }
 
     @media ${device.mobileL} {
-        width: 405px;
+        width: 400px;
     }
 
     @media ${device.tablet} {

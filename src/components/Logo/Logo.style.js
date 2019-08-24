@@ -6,12 +6,22 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     margin: 30px auto;
+`;
 
+export const Icon = styled.img`
     @media ${device.mobileS} {
-        flex-direction: column;
+        width: 150px;
+    }
+
+    @media ${device.mobileM} {
+        width: 160px;
+    }
+
+    @media ${device.mobileL} {
+        width: 200px;
     }
 
     @media ${device.tablet} {
-        flex-direction: row;
+        width: 320px
     }
 `;
