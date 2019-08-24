@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../actions/fetchDataAction';
 import { Input } from './SearchBar.style';
+import { API_END_POINTS } from '../../constants/APIEndPoints';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -9,7 +10,12 @@ const SearchBar = () => {
     const [character, setCharacter] = useState('');
 
     useEffect(() => {
-        dispatch(fetchData(character));
+        dispatch(
+            fetchData({
+                url: `${API_END_POINTS.characters}${character}`,
+                fromSearch: true
+            })
+        );
     }, [character, dispatch]);
 
     const onChange = e => {

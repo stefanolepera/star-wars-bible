@@ -1,4 +1,4 @@
-import { DETAILS } from './Details';
+import { DETAILS } from '../constants/Details';
 
 export const sortedFilms = films => [...films].sort((a, b) => a.release_date.split('-')[0] - b.release_date.split('-')[0]);
 

@@ -1,5 +1,5 @@
 import { sortedFilms, getCharacterDetails, getFilmsByCharacter, formatDetail } from '../FilterData';
-import { DETAILS } from '../Details';
+import { DETAILS } from '../../constants/Details';
 import { filmsResponse } from '../../__mocks__/FilmsResponseMock';
 import { singleCharacterResponse } from '../../__mocks__/CharacterResponseMock'
 

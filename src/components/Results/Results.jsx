@@ -6,21 +6,28 @@ import {
     getCharacterDetails,
     getFilmsByCharacter
 } from '../../utils/FilterData';
-import { Messages } from '../../utils/Locale';
+import { Messages } from '../../constants/Locale';
 
 const Results = () => {
-    const [results, count, isLoading, isError, films, filmsError] = useSelector(
-        state => [
-            state.data.queryData,
-            state.data.count,
-            state.data.isFetchingInProgress,
-            state.data.isFetchingError,
-            state.bootstrap.filmsData,
-            state.bootstrap.filmsDataError
-        ]
-    );
+    const [
+        results,
+        count,
+        isFromSearch,
+        isLoading,
+        isError,
+        films,
+        filmsError
+    ] = useSelector(state => [
+        state.data.queryData,
+        state.data.count,
+        state.data.isFromSearch,
+        state.data.isFetchingInProgress,
+        state.data.isFetchingError,
+        state.bootstrap.filmsData,
+        state.bootstrap.filmsDataError
+    ]);
 
-    if (isLoading) {
+    if (isLoading && isFromSearch) {
         return <Spinner />;
     }
 
@@ -42,6 +49,7 @@ const Results = () => {
                     characterFilms={getFilmsByCharacter(character, films)}
                 />
             ))}
+            {isLoading && <Spinner />}
         </>
     );
 };
