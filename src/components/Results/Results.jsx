@@ -7,6 +7,7 @@ import {
     getFilmsByCharacter
 } from '../../utils/FilterData';
 import { Messages } from '../../constants/Locale';
+import { ResultsWrapper } from './Results.style';
 
 const Results = () => {
     const [
@@ -40,7 +41,7 @@ const Results = () => {
     }
 
     return (
-        <>
+        <ResultsWrapper>
             {results.map((character, index) => (
                 <ResultItem
                     key={index}
@@ -50,7 +51,7 @@ const Results = () => {
                 />
             ))}
             {isLoading && <Spinner />}
-        </>
+        </ResultsWrapper>
     );
 };
 
