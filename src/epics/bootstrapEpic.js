@@ -1,6 +1,6 @@
 import { of, concat } from 'rxjs';
 import { ofType } from 'redux-observable';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, timeout } from 'rxjs/operators';
 import { BOOTSTRAP_APPLICATION } from '../actions/types';
 import {
     bootstrapDataCompleted,
@@ -8,6 +8,7 @@ import {
     scrollEventListener
 } from '../actions/bootstrapAction';
 import { sortedFilms } from '../utils/FilterData';
+import { REQUEST_TIMEOUT } from '../constants/Settings';
 import { API_END_POINTS } from '../constants/APIEndPoints';
 
 const bootstrapEpic = (action$, state$, { getData }) => action$.pipe(
@@ -16,6 +17,7 @@ const bootstrapEpic = (action$, state$, { getData }) => action$.pipe(
         concat(
             of(scrollEventListener()),
             getData(API_END_POINTS.films).pipe(
+                timeout(REQUEST_TIMEOUT),
                 map(films =>
                     bootstrapDataCompleted(
                         sortedFilms(films.response.results)
