@@ -5,27 +5,29 @@ import {
     ContentWrapper,
     DetailsWrapper
 } from './ResultItem.style';
-import { Title, SubTitle } from './components';
-import { formatDetail } from '../../utils/FilterData';
+import { Title, SubTitle, Text } from './components';
+import { formatDetail, trimDetail } from '../../utils/FilterData';
 
-const ResultItem = ({ characterName, characterDetails, characterFilms }) => (
+const ResultItem = ({ name, details, films }) => (
     <MainWrapper>
-        <Title title={characterName} />
+        <Title title={name} />
         <hr />
         <ContentWrapper>
             <DetailsWrapper>
                 <SubTitle subTitle="Details" />
-                {characterDetails.map((detail, index) => (
-                    <div key={index}>
-                        {formatDetail(detail[0])} : {detail[1]}
-                    </div>
+                {details.map((detail, index) => (
+                    <Text
+                        key={index}
+                        text={`${formatDetail(detail[0])} : 
+                        ${trimDetail(detail[1])}`}
+                    />
                 ))}
                 <hr />
             </DetailsWrapper>
             <DetailsWrapper>
                 <SubTitle subTitle="Films" />
-                {characterFilms.map((film, index) => (
-                    <div key={index}>{film}</div>
+                {films.map((film, index) => (
+                    <Text key={index} text={film} />
                 ))}
             </DetailsWrapper>
         </ContentWrapper>
@@ -33,9 +35,9 @@ const ResultItem = ({ characterName, characterDetails, characterFilms }) => (
 );
 
 ResultItem.propTypes = {
-    characterName: PropTypes.string,
-    characterDetails: PropTypes.arrayOf(PropTypes.array),
-    characterFilms: PropTypes.arrayOf(PropTypes.string)
+    name: PropTypes.string,
+    details: PropTypes.arrayOf(PropTypes.array),
+    films: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default ResultItem;

@@ -1,4 +1,4 @@
-import { sortedFilms, getCharacterDetails, getFilmsByCharacter, formatDetail } from '../FilterData';
+import { sortedFilms, getDetails, getFilmsByResult, formatDetail } from '../FilterData';
 import { DETAILS } from '../../constants/Details';
 import { filmsResponse } from '../../__mocks__/FilmsResponseMock';
 import { singleCharacterResponse } from '../../__mocks__/CharacterResponseMock'
@@ -10,26 +10,26 @@ describe('FilterData test', () => {
         expect(sortedFilms(filmsResponse.data.results)[2].title).toEqual('Return of the Jedi');
     })
 
-    it ('getCharacterDetails should return an array with the same lenght of relevant details', () => {
-        expect(getCharacterDetails(singleCharacterResponse.data.results[0]).length).toEqual(DETAILS.length);
+    it ('getDetails should return an array with the same lenght of relevant details', () => {
+        expect(getDetails(singleCharacterResponse.data.results[0], 'Characters').length).toEqual(DETAILS['Characters'].length);
     })
 
-    it ('getCharacterDetails should contain relevant details', () => {
-        const details = getCharacterDetails(singleCharacterResponse.data.results[0]).map(detail => detail[0]);
+    it ('getDetails should contain relevant details', () => {
+        const details = getDetails(singleCharacterResponse.data.results[0], 'Characters').map(detail => detail[0]);
         expect((details).indexOf('mass')).toBeGreaterThan(-1);
     })
 
-    it ('getCharacterDetails should not contain irrelevant details', () => {
-        const details = getCharacterDetails(singleCharacterResponse.data.results[0]).map(detail => detail[0]);
+    it ('getDetails should not contain irrelevant details', () => {
+        const details = getDetails(singleCharacterResponse.data.results[0], 'Characters').map(detail => detail[0]);
         expect((details).indexOf('homeworld')).toEqual(-1);
     })
 
-    it('getFilmsByCharacter should return an array with length of the relevant films for that character', () => {
-        expect(getFilmsByCharacter(singleCharacterResponse.data.results[0], filmsResponse.data.results).length).toEqual(5);
+    it('getFilmsByResult should return an array with length of the relevant films for that character', () => {
+        expect(getFilmsByResult(singleCharacterResponse.data.results[0], filmsResponse.data.results).length).toEqual(5);
     })
 
-    it('getFilmsByCharacter should return an array of only titles', () => {
-        expect(typeof getFilmsByCharacter(singleCharacterResponse.data.results[0], filmsResponse.data.results)[0]).toBe('string');
+    it('getFilmsByResult should return an array of only titles', () => {
+        expect(typeof getFilmsByResult(singleCharacterResponse.data.results[0], filmsResponse.data.results)[0]).toBe('string');
     })
 
     it('formatDetail should return a string replacing underscore with a whitespace', () => {

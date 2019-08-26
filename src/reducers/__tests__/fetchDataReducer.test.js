@@ -3,19 +3,21 @@ import {
     FETCH_DATA,
     FETCH_DATA_IN_PROGRESS,
     FETCH_DATA_ERROR,
-    FETCH_DATA_COMPLETED
+    FETCH_DATA_COMPLETED,
+    SET_SEARCH_TYPE
 } from '../../actions/types';
 
 describe('fetchDataReducer test', () => {
     const initialState = {
         queryValue: '',
         queryData: [],
+        searchType: 'Films',
         next: '',
         count: -1,
         hasPrevious: false,
         isFromSearch: false,
         isFetchingInProgress: false,
-        isFetchingError: ''
+        isFetchingError: false
     };
 
     describe('INITIAL_STATE test', () => {
@@ -66,12 +68,12 @@ describe('fetchDataReducer test', () => {
         it('should return the correct state', () => {
             const action = {
                 type: FETCH_DATA_ERROR,
-                payload: 'error'
+                payload: true
             };
 
             const expectedState = {
                 ...initialState,
-                isFetchingError: 'error'
+                isFetchingError: true
             };
 
             expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
@@ -97,6 +99,23 @@ describe('fetchDataReducer test', () => {
                 hasPrevious: false,
                 isSinglePage: true,
                 queryData: []
+            };
+
+            expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
+        });
+    });
+
+    describe('SET_SEARCH_TYPE test', () => {
+        it('should return the correct state', () => {
+            const action = {
+                type: SET_SEARCH_TYPE,
+                payload: ''
+            };
+
+            const expectedState = {
+                ...initialState,
+                queryData: [],
+                searchType: '',
             };
 
             expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
