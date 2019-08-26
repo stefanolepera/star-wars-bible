@@ -13,7 +13,7 @@ const initialState = {
     hasPrevious: false,
     isFromSearch: false,
     isFetchingInProgress: false,
-    isFetchingError: ''
+    isFetchingError: false
 };
 
 const fetchDataReducer = (state = initialState, action) => {

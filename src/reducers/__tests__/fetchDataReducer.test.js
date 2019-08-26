@@ -15,7 +15,7 @@ describe('fetchDataReducer test', () => {
         hasPrevious: false,
         isFromSearch: false,
         isFetchingInProgress: false,
-        isFetchingError: ''
+        isFetchingError: false
     };
 
     describe('INITIAL_STATE test', () => {
@@ -66,12 +66,12 @@ describe('fetchDataReducer test', () => {
         it('should return the correct state', () => {
             const action = {
                 type: FETCH_DATA_ERROR,
-                payload: 'error'
+                payload: true
             };
 
             const expectedState = {
                 ...initialState,
-                isFetchingError: 'error'
+                isFetchingError: true
             };
 
             expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
