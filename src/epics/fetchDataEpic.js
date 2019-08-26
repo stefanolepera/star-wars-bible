@@ -14,7 +14,7 @@ const fetchDataEpic = (action$, state$, { getData }) => action$.pipe(
             getData(action.payload.url).pipe(
                 timeout(REQUEST_TIMEOUT),
                 exhaustMap(search => of(fetchDataCompleted(search.response))),
-                catchError(error => of(fetchDataError(error.response.details)))
+                catchError(() => of(fetchDataError(true)))
             ),
             of(fetchDataInProgress(false))
         )
