@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { bootstrapApplication } from '../../actions/bootstrapAction';
-import { Logo, SearchBar, Results } from '../../components';
+import { Logo, SearchBar, SearchMenu, Results } from '../../components';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const Home = () => {
         <>
             <Logo />
             <SearchBar />
+            <SearchMenu />
             <Results />
         </>
     );

@@ -2,16 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { ResultItem } from '../';
 import { Message, Spinner } from './components';
-import {
-    getCharacterDetails,
-    getFilmsByCharacter
-} from '../../utils/FilterData';
+import { getDetails, getFilmsByResult } from '../../utils/FilterData';
 import { Messages } from '../../constants/Locale';
 import { ResultsWrapper } from './Results.style';
 
 const Results = () => {
     const [
         results,
+        searchType,
         count,
         isFromSearch,
         isLoading,
@@ -20,6 +18,7 @@ const Results = () => {
         filmsError
     ] = useSelector(state => [
         state.data.queryData,
+        state.data.searchType,
         state.data.count,
         state.data.isFromSearch,
         state.data.isFetchingInProgress,
@@ -42,14 +41,15 @@ const Results = () => {
 
     return (
         <ResultsWrapper>
-            {results.map((character, index) => (
-                <ResultItem
-                    key={index}
-                    characterName={character.name}
-                    characterDetails={getCharacterDetails(character)}
-                    characterFilms={getFilmsByCharacter(character, films)}
-                />
-            ))}
+            {results.length > 0 &&
+                results.map((result, index) => (
+                    <ResultItem
+                        key={index}
+                        name={result.name}
+                        details={getDetails(result, searchType)}
+                        films={getFilmsByResult(result, films)}
+                    />
+                ))}
             {isLoading && <Spinner />}
         </ResultsWrapper>
     );
