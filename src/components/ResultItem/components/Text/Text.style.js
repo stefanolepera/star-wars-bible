@@ -1,24 +1,20 @@
 import styled from 'styled-components';
 import { device } from '../../../../constants/Devices';
 
-export const StyledTitle = styled.h2`
-    text-align: center;
-    color: maroon;
-    padding-top: 15px;
-
+export const StyledText = styled.div`
     @media ${device.mobileS} {
-        font-size: 1em;
+        font-size: 0.6em;
     }
 
     @media ${device.mobileM} {
-        font-size: 1.2em;
+        font-size: 0.8em;
     }
 
     @media ${device.mobileL} {
-        font-size: 1.4em;
+        font-size: 1.0em;
     }
 
     @media ${device.tablet} {
-        font-size: 1.6em;
+        font-size: 1.2em;
     }
 `;
