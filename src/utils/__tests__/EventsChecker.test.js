@@ -2,14 +2,14 @@ import { shouldLoadMore, hasReachThreshold } from '../EventsChecker';
 
 describe('EventsChecker test', () => {
     const innerHeight = 500;
-    const offsetHeight = 1000;
+    const scrollHeight = 1000;
     const greaterScrollTop = 400;
 
     const scrollElement = {
         target: {
             documentElement: {
                 scrollTop: 0,
-                offsetHeight
+                scrollHeight
             }
         }
     }
