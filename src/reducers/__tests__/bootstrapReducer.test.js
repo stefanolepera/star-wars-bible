@@ -27,7 +27,7 @@ describe('bootstrapReducer test', () => {
                 filmsData: []
             };
 
-            expect(bootstrapReducer(undefined, action)).toEqual(expectedState);
+            expect(bootstrapReducer(initialState, action)).toEqual(expectedState);
         });
     });
 
@@ -43,7 +43,7 @@ describe('bootstrapReducer test', () => {
                 filmsDataError: true
             };
 
-            expect(bootstrapReducer(undefined, action)).toEqual(expectedState);
+            expect(bootstrapReducer(initialState, action)).toEqual(expectedState);
         });
     });
 });

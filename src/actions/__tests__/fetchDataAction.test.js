@@ -81,4 +81,18 @@ describe('fetchDataAction test', () => {
             expect(store.getActions()).toEqual(expectedActions);
         });   
     });
+
+    describe('setSearchType test', () => {
+        it('should dispatch the correct action', () => {
+            const expectedActions = [
+                {
+                    type: types.SET_SEARCH_TYPE,
+                    payload: ''
+                }
+            ];
+
+            store.dispatch(fetchDataAction.setSearchType(''));
+            expect(store.getActions()).toEqual(expectedActions);
+        });   
+    });
 });

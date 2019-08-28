@@ -9,7 +9,7 @@ const infiniteScrollEpic = (action$, state$) => action$.pipe(
     ofType(SCROLL_EVENT_LISTENER),
     switchMap(() =>
         fromEvent(window, 'scroll').pipe(
-            throttleTime(500),
+            throttleTime(400),
             filter(ev => shouldLoadMore(ev, state$.value.data.next, state$.value.data.isFetchingInProgress)),
             map(() => fetchData({
                 url: state$.value.data.next,
