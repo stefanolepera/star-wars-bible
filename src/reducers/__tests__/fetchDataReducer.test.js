@@ -44,7 +44,7 @@ describe('fetchDataReducer test', () => {
                 isFromSearch: true
             };
 
-            expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
+            expect(fetchDataReducer(initialState, action)).toEqual(expectedState);
         });
     });
 
@@ -60,7 +60,7 @@ describe('fetchDataReducer test', () => {
                 isFetchingInProgress: true
             };
 
-            expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
+            expect(fetchDataReducer(initialState, action)).toEqual(expectedState);
         });
     });
 
@@ -76,12 +76,12 @@ describe('fetchDataReducer test', () => {
                 isFetchingError: true
             };
 
-            expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
+            expect(fetchDataReducer(initialState, action)).toEqual(expectedState);
         });
     });
 
     describe('FETCH_DATA_COMPLETED test', () => {
-        it('should return the initial state', () => {
+        it('should return the correct state when previous is null', () => {
             const action = { 
                 type: FETCH_DATA_COMPLETED,
                 payload: {
@@ -101,7 +101,37 @@ describe('fetchDataReducer test', () => {
                 queryData: []
             };
 
-            expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
+            expect(fetchDataReducer(initialState, action)).toEqual(expectedState);
+        });
+    });
+
+    describe('FETCH_DATA_COMPLETED test', () => {
+        it('should return the correct state when previous is not null', () => {
+            const modifiedState = {
+                ...initialState, 
+                queryData:['something']
+            }
+
+            const action = { 
+                type: FETCH_DATA_COMPLETED,
+                payload: {
+                    count: 1,
+                    next: null,
+                    previous: 'something',
+                    results: ['else']
+                }
+            };
+
+            const expectedState = {
+                ...modifiedState,
+                count: 1,
+                next: null,
+                hasPrevious: true,
+                isSinglePage: false,
+                queryData: ['something', 'else']
+            };
+
+            expect(fetchDataReducer(modifiedState, action)).toEqual(expectedState);
         });
     });
 
@@ -118,7 +148,7 @@ describe('fetchDataReducer test', () => {
                 searchType: '',
             };
 
-            expect(fetchDataReducer(undefined, action)).toEqual(expectedState);
+            expect(fetchDataReducer(initialState, action)).toEqual(expectedState);
         });
     });
 });

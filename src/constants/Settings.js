@@ -1,4 +1,4 @@
-export const SCROLL_TRIGGER_PERC = 80;
+export const SCROLL_TRIGGER_PERC = 70;
 
 export const REQUEST_TIMEOUT = 10000;
 
