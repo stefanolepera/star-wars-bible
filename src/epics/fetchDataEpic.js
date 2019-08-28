@@ -1,6 +1,6 @@
 import { of, concat } from 'rxjs';
 import { ofType } from 'redux-observable';
-import { switchMap, exhaustMap, catchError, debounceTime, timeout } from 'rxjs/operators';
+import { switchMap, exhaustMap, catchError, debounceTime, timeout, retry } from 'rxjs/operators';
 import { FETCH_DATA } from '../actions/types';
 import { REQUEST_TIMEOUT } from '../constants/Settings';
 import { fetchDataInProgress, fetchDataCompleted, fetchDataError } from '../actions/fetchDataAction';
@@ -12,6 +12,7 @@ const fetchDataEpic = (action$, state$, { getData }) => action$.pipe(
         concat(
             of(fetchDataInProgress(true)),
             getData(action.payload.url).pipe(
+                retry(3),
                 timeout(REQUEST_TIMEOUT),
                 exhaustMap(search => of(fetchDataCompleted(search.response))),
                 catchError(() => of(fetchDataError(true)))

@@ -1,6 +1,6 @@
 import { of, concat } from 'rxjs';
 import { ofType } from 'redux-observable';
-import { switchMap, catchError, timeout } from 'rxjs/operators';
+import { switchMap, catchError, timeout, retry } from 'rxjs/operators';
 import { BOOTSTRAP_APPLICATION } from '../actions/types';
 import {
     bootstrapDataCompleted,
@@ -21,6 +21,7 @@ const bootstrapEpic = (action$, state$, { getData }) => action$.pipe(
             of(scrollEventListener()),
             of(fetchDataInProgress(true)),
             getData(API_END_POINTS[state$.value.data.searchType]).pipe(
+                retry(3),
                 timeout(REQUEST_TIMEOUT),
                 switchMap(films =>
                     concat(
